@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.bjsxt.mapper.UserMapper">
+ 	<!--
+ 		查询用户信息 
+ 			查询所有
+ 			根据用户名查询
+ 			根据手机号查询
+ 			根据用户名和手机号查询	
+ 	 -->
+ 	 <!--
+ 	 	if标签：
+ 	 		作用：可以根据参数判断要拼接的SQL，单分支。
+ 	 		属性：test
+ 	 			在test属性中使用param1或者别名或者属性名进行逻辑条件判断
+ 	   -->
+ 	 <select id="selUser" resultType="user">
+ 	 		select * from t_user where 1=1
+	 	 	<if test="param1 !='' and param1!=null">
+	 	 		and  uname =#{param1} 
+	 	 	</if>
+	 	 	<if test="param2 !='' and param2!=null">
+	 	 		 and  phone =#{param2} 
+	 	 	</if>
+ 	 </select>
+ 	 <!--
+ 	 	where标签：
+ 	 		自动生成where关键字，并去除第一个and或者or关键字
+ 	   -->
+ 	 <select id="selUser2" resultType="user">
+ 	 		select * from t_user 
+ 	 		<where>
+ 	 			<if test="param1 !='' and param1!=null">
+	 	 			and  uname =#{param1} 
+		 	 	</if>
+		 	 	<if test="param2 !='' and param2!=null">
+		 	 		 and  phone =#{param2} 
+		 	 	</if>
+ 	 		</where>
+ 	 </select>
+ 	  <!--
+ 	 	choose when otherwise标签：多分支标签
+ 	 	作用：根据条件判断动态拼接sql语句
+ 	 	特点：
+ 	 		相当于java中的多分支判断语句，条件成立只会判断一个，其他的不会再次判断
+ 	 	注意:
+ 	 		条件只会成立一个
+ 	  -->
+ 	  <select id="selUser3" resultType="user">
+ 	 		select * from t_user 
+ 	 		<where>
+ 	 			<choose>
+ 	 				<when test="param1 !='' and param1!=null">
+ 	 					and uname=#{param1}
+ 	 				</when>
+ 	 				<when test="param2 !='' and param2!=null">
+ 	 					and phone=#{param2}
+ 	 				</when>
+ 	 				<otherwise>
+ 	 					and 1=1
+ 	 				</otherwise>
+ 	 			</choose>
+ 	 		</where>
+ 	 </select>
+ 	 <!-- 
+ 	 	更新用户信息
+ 	 	根据用户名和手机号更新用户信息
+ 	 	根据用户名更新用户信息
+ 	 	根据手机号更新用户信息
+ 	 	
+ 	 	使用if标签完成动态更新拼接：技巧
+ 	  -->
+ 	  <update id="upUser">
+ 	  	update t_user set
+ 	  		<if test="param1 !='' and param1!=null">
+ 	  				 uname=#{param1},
+ 	  		</if>
+ 	  		<if test="param2 !='' and param2!=null">
+ 	  				phone=#{param2},
+ 	  		</if>
+ 	  		uid=#{param3}
+ 	   		where uid=#{param3}
+ 	  </update>
+ 	  <!--
+ 	  	使用set标签完成更新
+ 	  	作用：
+ 	  		自动生成一个set关键字，并去除最后一个逗号。
+ 	  -->
+ 	   <update id="upUser2">
+	 	  	update t_user 
+	 	  	<set>
+	 	  		<if test="param1 !='' and param1!=null">
+	 	  				 uname=#{param1},
+	 	  		</if>
+	 	  		<if test="param2 !='' and param2!=null">
+	 	  				phone=#{param2},
+	 	  		</if>
+	 	  		<if test="param3 !='' and param3!=null">
+	 	  				uid=#{param3},
+	 	  		</if>
+	 	  	</set>
+ 	   		where uid=#{param3}
+ 	  </update>
+ 	  <!-- 
+ 	  	trim标签学习：
+ 	  		作用：添加前缀或者后缀，并可以去除指定的前缀信息或者后缀信息
+ 	  		属性:
+ 	  			prefix 在指定的信息前添加前缀
+ 	  			prefixOverrides:去除指定的信息的前缀
+ 	  			suffix:给指定的信息添加后缀
+ 	  			suffixOverrides:去除指定的信息的后缀
+ 	   -->
+ 	  <update id="upUser3">
+	 	  	update t_user 
+	 	  <trim prefix="set"   suffixOverrides=",">
+
+		 	  		<if test="param1 !='' and param1!=null">
+		 	  				 uname=#{param1},
+		 	  		</if>
+		 	  		<if test="param2 !='' and param2!=null">
+		 	  				phone=#{param2},
+		 	  		</if>
+		 	  		<if test="param3 !='' and param3!=null">
+		 	  				uid=#{param3},
+		 	  		</if>
+	 	  </trim>
+ 	   		where uid=#{param3}
+ 	  </update>
+ 	  <!-- 
+ 	  	循环标签foreach:
+ 	  		注意：循环标签一般结合in语句使用。一般遍历list集合。 	  
+ 	  		适用：in语句中的内容和个数不确定
+ 	  		属性：
+ 	  			collection:声明要遍历的类型
+ 	  			open:起始左括号
+ 	  			close:结束的右括号
+ 	  			separator:元素间隔符
+ 	  			item:每次的遍历结果
+ 	  			index:角标
+ 	   -->
+ 	  <select id="selForeach" resultType="user">
+ 	  	select * from t_user where uid in
+ 	  	<foreach collection="list" open="(" close=")" separator="," item="i">
+ 			#{i}	  	
+ 	  	</foreach>
+ 	  </select>
+ 	  <!-- 
+ 	  	bind标签学习:
+ 	  		作用：给参数在传递给SQL语句之前重新赋值。
+ 	  		
+ 	   -->
+ 	   <select id="selBind">
+ 	   		select * from t_user 
+	 	 		<where>
+	 	 			<if test="param1 !='' and param1!=null">
+	 	 				<bind name="na" value="'%'+param1+'%'"/>
+		 	 			and  uname like #{na} 
+			 	 	</if>
+			 	 	<if test="param2 !='' and param2!=null">
+			 	 		 and  phone =#{param2} 
+			 	 	</if>
+	 	 		</where>
+ 	   </select>
+ 	   
+ 	   
+ 	  
+ 	  
+ 	    
+ 	    
+ 	  
+ 	  
+ 	  
+ </mapper>
