@@ -1,0 +1,130 @@
+package com.yonyou.ws.common.dao;
+
+
+import com.yonyou.ws.common.po.BasePO;
+import org.apache.ibatis.annotations.Param;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 映射器接口。
+ * 
+ * @author Luffy
+ *
+ * @param <E>
+ * @param <PK>
+ */
+public interface BaseMapper<E extends BasePO, PK extends Serializable> {
+
+    /**
+     * 插入数据。
+     *
+     * @param entity
+     */
+    Long insert(E entity);
+
+    /**
+     * 插入数据。
+     *
+     * @param list
+     */
+    void batchInsert(@Param("list") List<E> list);
+
+    /**
+     * 批量修改
+     * @param list
+     */
+    int batchUpdate(@Param("list") List<E> list);
+
+    /**
+     * 根据主键删除数据。
+     * 
+     * @param id
+     */
+    int deleteById(PK id);
+
+    /**
+     * 根据主键删除数据。
+     *
+     * @param entity
+     */
+    int deleteByEntity(E entity);
+
+    /**
+     * 更新数据。
+     * 
+     * @param entity
+     */
+    int update(E entity);
+
+    /**
+     * 更新对象中的非空字段。
+     *
+     * @param entity
+     */
+    int updateByNotNullFiled(E entity);
+
+    /**
+     * 根据主键查询数据。
+     *
+     * @param id
+     * @return
+     */
+    E getById(PK id);
+
+    /**
+     * 根据主键批量查询数据。
+     *
+     * @param ids
+     * @return
+     */
+    List<E> getByIds(List<PK> ids);
+
+    /**
+     * 查询所有数据。
+     * 
+     * @return
+     */
+    List<E> findAll();
+
+    /**
+     * 根据数据对象查询数据列表总数，对象中的非空字段会被当做查询条件过滤项。
+     *
+     * @param entity
+     * @return
+     */
+    Long totalNumber(E entity);
+
+    /**
+     * 根据数据对象查询数据列表，对象中的非空字段会被当做查询条件过滤项。
+     *
+     * @param entity
+     * @return
+     */
+    List<E> findByEntity(E entity);
+
+    /**
+     * 根据数据对象查询数据列表，对象中的非空字段会被当做查询条件过滤项，支持分页。
+     *
+     * @param entity
+     * @return
+     */
+    List<E> findPageList(@Param("item")E entity,@Param("startIndex") int startIndex,@Param("pageSize") int pageSize);
+
+    /**
+     * 根据条件获取实体数量
+     * @param entity
+     * @return
+     */
+    int countByEntity(E entity);
+}
+
+
+....................................................................................................................
+使用方法：
+
+@Repository
+public interface ActSignLogDao extends BaseMapper<ActSignLogPO, Long>
+
+ActSignLogPO是继承自BasePO的实体类，Long表示主键的类型(持久化需要)
