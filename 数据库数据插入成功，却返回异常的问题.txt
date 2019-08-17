@@ -1,0 +1,16 @@
+   
+   
+   <insert id="insertRecord" keyProperty="id">
+
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        INSERT INTO temp_record (prod_sku_id,
+                                 member_id,
+                                 gmt_create)
+        VALUES (#{prodSkuId},
+                #{memberId},
+                now())
+
+    </insert>
