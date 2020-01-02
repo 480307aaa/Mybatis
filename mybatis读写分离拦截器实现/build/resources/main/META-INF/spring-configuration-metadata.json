@@ -1,0 +1,129 @@
+{
+  "groups": [
+    {
+      "name": "yonyoucloud.upesn.datasource",
+      "type": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master",
+      "type": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties",
+      "sourceMethod": "getMaster()"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.slaves",
+      "type": "java.util.List",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties",
+      "sourceMethod": "getSlaves()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "yonyoucloud.upesn.datasource.master.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.filters",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": "stat"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.initial-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 10
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 200
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.max-pool-prepared-statement-per-connection-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 50
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.max-wait",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 300000
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.min-evictable-idle-time-millis",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 300000
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 10
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.password",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.pool-prepared-statements",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": true
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.remove-abandoned",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": true
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.test-while-idle",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": true
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.time-between-eviction-runs-millis",
+      "type": "java.lang.Integer",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": 120000
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.url",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.username",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig"
+    },
+    {
+      "name": "yonyoucloud.upesn.datasource.master.validation-query",
+      "type": "java.lang.String",
+      "sourceType": "com.yonyoucloud.ec.sns.starter.db.rw.splitting.DbReadWriteProperties$DataSourceConfig",
+      "defaultValue": "select 'x'"
+    }
+  ],
+  "hints": []
+}

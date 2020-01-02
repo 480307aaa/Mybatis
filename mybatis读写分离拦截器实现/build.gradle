@@ -1,0 +1,9 @@
+dependencies {
+    api project(':spring-boot-starter-upesn-core')
+    api "org.springframework:spring-jdbc"
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'org.mybatis:mybatis'
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
+    api 'com.alibaba:druid-spring-boot-starter'
+    compileOnly 'mysql:mysql-connector-java'
+}

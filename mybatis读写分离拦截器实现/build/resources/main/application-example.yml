@@ -1,0 +1,52 @@
+
+
+yonyoucloud:
+  upesn:
+    datasource:
+      master:
+        url: jdbc:mysql://172.20.54.129:5001/todocenter?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true
+        username: lightapp
+        password: ZpFGFS7dJjTGCBDNC2b6
+        driver-class-name: com.mysql.jdbc.Driver
+        minIdle: 5
+        maxActive: 100
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 50
+        removeAbandoned: true
+        filters: stat
+      slaves:
+        - url: jdbc:mysql://172.20.54.82:5001/todocenter?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true
+          username: lightapp
+          password: ZpFGFS7dJjTGCBDNC2b6
+          driver-class-name: com.mysql.jdbc.Driver
+          minIdle: 5
+          maxActive: 100
+          initialSize: 10
+          maxWait: 60000
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: select 'x'
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 50
+          removeAbandoned: true
+          filters: stat
+spring:
+  datasource:
+    druid:
+      filter-class-names:
+      stat-view-servlet:
+        allow: true
+        login-username: 5Uz71sm7Ek10NyE8
+        login-password: s4PXiaREiT9cIrNRLvC0NiY2ugqIBlki
+        url-pattern: /druid/*
